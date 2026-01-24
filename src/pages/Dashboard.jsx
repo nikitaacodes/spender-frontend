@@ -10,21 +10,29 @@ const Dashboard = () => {
     }
 
     tg.ready();
+    console.log("telegram webapp detected");
+    console.log("initdata len:", tg.initData?.length);
 
-    fetch("/auth/telegram", {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/auth/telegram`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ initData: tg.initData }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        initData: tg.initData,
+      }),
     })
       .then((res) => {
         if (!res.ok) throw new Error("Telegram auth failed");
         return res.json();
       })
       .then((data) => {
-        localStorage.setItem("tele_user_id", data.user_id);
+        console.log("✅ Auth success:", data);
+
+        localStorage.setItem("x-telegram-user", data.user_id);
       })
       .catch((err) => {
-        console.error(err);
+        console.error("❌ Telegram auth error:", err);
       });
   }, []);
 
