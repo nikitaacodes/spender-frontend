@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Waterfall&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sacramento&family=Waterfall&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Sacramento&family=Waterfall&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sacramento&family=Waterfall&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* fonts */
+  --font-waterfall: "Waterfall", cursive;
+  --font-sacramento: "Sacramento", cursive;
+  --font-montserrat: "montserrat", cursive;
+
+  /* colors */
+  --color-deepnavy: oklch(23.88% 0.111 263.8);
+  --color-lightcyan: oklch(77.62% 0.149 226.59);
+  --color-purpleg: oklch(63.87% 0.278 313.58);
+  --color-blueg: oklch(59.87% 0.22 257.83);
+  --color-lightcyan2: oklch(84.76% 0.115 218.3);
+  --color-primaryblue: oklch(32.62% 0.077 241.77);
+  --color-secondarybrown: oklch(49.62% 0.132 49.65);
+  --color-bluvywhite: oklch(95.59% 0.015 181.78);
+  --color-themepink: oklch(70.62% 0.156 5.13);
+  --color-themegreen: oklch(67.33% 0.136 145.89);
+  --color-themeorange: oklch(75.33% 0.159 58.16);
+  --color-inkblack: oklch(14.83% 0.025 194.77);
+}
+@layer utilities {
+  .bggradient {
+    background-image:
+      radial-gradient(
+        ellipse var(--rx, 1200px) var(--ry, 620px) at var(--radial-x-1, 50%)
+          var(--radial-y-1, 0%),
+        var(--radial-color-1, rgb(33, 157, 157)) 5%,
+        rgba(59, 130, 246, 0.12) 30%,
+        transparent 45%
+      ),
+      radial-gradient(
+        ellipse var(--rx, 400px) var(--ry, 520px) at var(--radial-x-1, 1%)
+          var(--radial-y-1, 60%),
+        var(--radial-color-1, rgb(33, 157, 157)) 1%,
+        rgba(59, 130, 246, 0.12) 30%,
+        transparent 70%
+      );
+  }
+}
