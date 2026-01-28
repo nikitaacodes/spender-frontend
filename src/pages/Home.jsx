@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="bggradient font-montserrat py-10 px-10 lg:px-20">
@@ -94,7 +94,7 @@ const Home = () => {
                 <span className="font-medium">1.</span> Add expenses in Telegram
               </li>
               <li>
-                <span className="font-medium">2.</span> Spender  remembers
+                <span className="font-medium">2.</span> Spender remembers
                 patterns
               </li>
               <li>
@@ -102,6 +102,17 @@ const Home = () => {
               </li>
             </ol>
           </section>
+        </div>
+        <div className="text-center">
+          {" "}
+          <Link to="/Dashboard">
+            {" "}
+            <p className="font-medium"> View Dashboard</p>{" "}
+          </Link>
+          <p className="text-blue-300">
+            {" "}
+            Already have Spendor on Telegram?{" "}
+          </p>{" "}
         </div>
       </div>
     </div>

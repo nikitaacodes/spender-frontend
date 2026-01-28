@@ -1,42 +1,38 @@
-import { useEffect } from "react";
+import { useState } from "react";
+import Content from "../components/dashboard/Content";
+import Lock from "../components/dashboard/Lock";
 
 const Dashboard = () => {
-  useEffect(() => {
-    const tg = window.Telegram?.WebApp;
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [key, setKey] = useState("");
+  const [password, setPassword] = useState("");
 
-    if (!tg) {
-      console.error("Not opened inside Telegram");
-      return;
-    }
+  const handleUnlock = () => {
+    // TEMP — later this will call /auth/login
+    setIsAuthenticated(true);
+  };
 
-    tg.ready();
-    console.log("telegram webapp detected");
-    console.log("initdata len:", tg.initData?.length);
+  return (
+    <div className="relative min-h-screen bg-amber-50 dark:bg-inkblack text-white">
+      <div
+        className={`transition-all duration-300 ${
+          !isAuthenticated ? "blur-md pointer-events-none select-none" : ""
+        }`}
+      >
+        <Content />
+      </div>
 
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/auth/telegram`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        initData: tg.initData,
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error("Telegram auth failed");
-        return res.json();
-      })
-      .then((data) => {
-        console.log("✅ Auth success:", data);
-
-        localStorage.setItem("x-telegram-user", data.user_id);
-      })
-      .catch((err) => {
-        console.error("❌ Telegram auth error:", err);
-      });
-  }, []);
-
-  return <div className="text-white">{/* dashboard UI here */}</div>;
+      {!isAuthenticated && (
+        <Lock
+          keyValue={key}
+          password={password}
+          onKeyChange={setKey}
+          onPasswordChange={setPassword}
+          onUnlock={handleUnlock}
+        />
+      )}
+    </div>
+  );
 };
 
 export default Dashboard;
