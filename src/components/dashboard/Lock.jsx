@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Lock = ({
   keyValue,
@@ -10,9 +10,7 @@ const Lock = ({
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 bg-black/40 backdrop-blur-sm">
       <div className="w-[320px] rounded-2xl bg-inkblack p-6 text-center shadow-xl">
-        <h2 className="pb-5 text-[28px] font-semibold">
-          Access Dashboard
-        </h2>
+        <h2 className="pb-5 text-[28px] font-semibold">Access Dashboard</h2>
 
         <input
           type="text"
@@ -40,8 +38,12 @@ const Lock = ({
 
       <div className="text-center text-sm text-gray-300">
         <p>To access dashboard:</p>
-        <p>• Hit <code>/start</code> to get your key</p>
-        <p>• Hit <code>/pass your_passcode</code></p>
+        <p>
+          • Hit <code>/start</code> to get your key
+        </p>
+        <p>
+          • Hit <code>/pass your_passcode</code>
+        </p>
       </div>
     </div>
   );
