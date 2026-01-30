@@ -105,7 +105,7 @@ const Home = () => {
         </div>
         <div className="text-center">
           {" "}
-          <Link to="/Dashboard">
+          <Link to="/dashboard">
             {" "}
             <p className="font-medium"> View Dashboard</p>{" "}
           </Link>
