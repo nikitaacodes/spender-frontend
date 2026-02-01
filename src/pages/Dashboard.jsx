@@ -4,50 +4,56 @@ import Lock from "../components/dashboard/Lock";
 
 const Dashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [checkingSession, setCheckingSession] = useState(true);
   const [dashboardData, setDashboardData] = useState(null);
 
-  // session check
-  useEffect(() => {
-    const checkSession = async () => {
-      try {
-        const res = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/dashboard/stats`,
-          { credentials: "include" },
-        );
-        if (res.ok) setIsAuthenticated(true);
-      } finally {
-        setCheckingSession(false);
+  const [keyValue, setKeyValue] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleUnlock = async () => {
+    const res = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/auth/unlock`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ key: keyValue, password }),
       }
-    };
-    checkSession();
+    );
+
+    if (res.ok) setIsAuthenticated(true);
+  };
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/dashboard/stats`, {
+      credentials: "include",
+    }).then((res) => {
+      if (res.ok) setIsAuthenticated(true);
+    });
   }, []);
 
-  // fetch dashboard data
   useEffect(() => {
     if (!isAuthenticated) return;
 
-    const fetchStats = async () => {
-      const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/dashboard/stats`,
-        { credentials: "include" },
-      );
-      const data = await res.json();
-      console.log("DASHBOARD DATA:", data);
-      setDashboardData(data);
-    };
-
-    fetchStats();
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/dashboard/stats`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => setDashboardData(data));
   }, [isAuthenticated]);
 
-  if (checkingSession) return <p>Loading…</p>;
+  if (!isAuthenticated) {
+    return (
+      <Lock
+        keyValue={keyValue}
+        password={password}
+        onKeyChange={setKeyValue}
+        onPasswordChange={setPassword}
+        onUnlock={handleUnlock}
+      />
+    );
+  }
 
-  return (
-    <>
-      <Content data={dashboardData} />
-      {!isAuthenticated && <Lock onUnlock={() => setIsAuthenticated(true)} />}
-    </>
-  );
+  return <Content data={dashboardData} />;
 };
 
 export default Dashboard;
