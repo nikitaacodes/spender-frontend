@@ -1,7 +1,25 @@
-import React from "react";
-
+import React, { useMemo } from "react";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 const Content = ({ data }) => {
   const { monthly, byCategory } = data || {};
+  const categoryIcons = {
+    food: "/bowl.svg",
+    travel: "/travel.svg",
+    bill: "/bills.svg",
+  };
+  const pieData = useMemo(() => {
+    if (!Array.isArray(byCategory)) return [];
+
+    return byCategory
+      .map((cat) => ({
+        name: cat.category,
+        value: parseFloat(String(cat.total).replace(/[^0-9.]/g, "")),
+      }))
+      .filter((d) => Number.isFinite(d.value) && d.value > 0);
+  }, [byCategory]);
+
+  const COLORS = ["#22c55e", "#3b82f6", "#f97316", "#ef4444", "#a855f7"];
+
   return (
     <div className="">
       {/* if side col here */}
@@ -39,17 +57,30 @@ const Content = ({ data }) => {
                   {/* figures */}
                   <div>
                     {" "}
-                    <div className="flex justify-start gap-2 items-baseline">
-                      <p className="font-montserrat font-semibold text-gray-800 text-[32px]">
+                    <div className="flex justify-start gap-1 ">
+                      <div className="flex flex-row  ">
                         {" "}
-                        ${monthly?.count ?? 0}
-                      </p>
-                      <div
-                        className="text-[12px] h-5 px-3 rounded-sm
+                        <span className="pt-1 ">
+                          {" "}
+                          <img
+                            src="/rupee.svg"
+                            alt="rupee"
+                            className="w-10 h-10"
+                          />
+                        </span>
+                        <div className="items-baseline flex gap-2">
+                          <span className="font-montserrat font-semibold text-gray-800 text-[32px]">
+                            {" "}
+                            {monthly?.total ?? 0}
+                          </span>
+                          <span
+                            className="text-[12px] h-5 px-3 rounded-sm
                      bg-green-100 text-green-600"
-                      >
-                        {" "}
-                        20%{" "}
+                          >
+                            {" "}
+                            20%{" "}
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div>
@@ -60,32 +91,7 @@ const Content = ({ data }) => {
                   </div>
                 </div>
               </div>
-              {/* income box */}
-              <div className=" bg-green-500 rounded-2xl">
-                <div className=" mt-2 py-3 px-3 flex flex-col gap-3 rounded-2xl border-2 bg-white border-green-500 ">
-                  {/* income header */}
-                  <div className="flex justify-between gap-15 font-montserrat text-gray-800 font-normal">
-                    {" "}
-                    <p> Total Income</p> <p> option</p>{" "}
-                  </div>
 
-                  {/* figures */}
-                  <div>
-                    {" "}
-                    <div className="flex justify-start gap-2 items-baseline">
-                      <p className="font-montserrat font-semibold text-gray-800 text-[32px]">
-                        {" "}
-                        ${monthly?.total ?? 0}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="font-montserrat text-gray-800 text-[12px]">
-                        increased from last month
-                      </p>
-                    </div>{" "}
-                  </div>
-                </div>
-              </div>
               {/* limits box */}
               <div className=" bg-red-500 rounded-2xl">
                 <div className=" mt-2 py-3 px-3 flex flex-col gap-3 rounded-2xl border-2 bg-red-200 border-red-500 ">
@@ -96,26 +102,38 @@ const Content = ({ data }) => {
                   </div>
 
                   {/* figures */}
+                  {/* figures */}
                   <div>
-                    {" "}
-                    <div className="flex justify-start gap-2 items-baseline">
-                      <p className="font-montserrat font-semibold text-gray-800 text-[32px]">
-                        {" "}
-                        $900
-                      </p>
-                      <div
-                        className="text-[12px] h-5 px-3 rounded-sm
-                     bg-red-300 text-red-600"
-                      >
-                        {" "}
-                        9%{" "}
+                    <div className="flex justify-start gap-1">
+                      <div className="flex flex-row">
+                        <span className="pt-1">
+                          <img
+                            src="/rupee.svg"
+                            alt="rupee"
+                            className="w-10 h-10"
+                          />
+                        </span>
+
+                        <div className="items-baseline flex gap-2">
+                          <span className="font-montserrat font-semibold text-gray-800 text-[32px]">
+                            900
+                          </span>
+
+                          <span
+                            className="text-[12px] h-5 px-3 rounded-sm
+          bg-red-300 text-red-600"
+                          >
+                            9%
+                          </span>
+                        </div>
                       </div>
                     </div>
+
                     <div>
                       <p className="font-montserrat text-gray-800 text-[12px]">
                         increased from last month
                       </p>
-                    </div>{" "}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -139,34 +157,71 @@ const Content = ({ data }) => {
           {/* category box */}
           <div className="px-2 py-2 border border-gray-300">
             {byCategory?.length > 0 ? (
-              byCategory.map((cat) => (
-                <div
-                  key={cat.category}
-                  className="flex flex-row gap-2 text-gray-600 mb-2"
-                >
-                  <i>icon</i>
+              byCategory.map((cat) => {
+                const icon =
+                  categoryIcons[cat.category] || categoryIcons.uncategorized;
 
-                  <div className="flex flex-col w-full">
-                    <div className="font-montserrat font-semibold text-gray-500 capitalize">
-                      {cat.category}
-                    </div>
+                return (
+                  <div
+                    key={cat.category}
+                    className="flex flex-row gap-2 text-gray-600 mb-2"
+                  >
+                    <img src={icon} alt={cat.category} className="w-10 h-10" />
 
-                    <div className="flex flex-row justify-between">
-                      <span className="font-montserrat font-semibold text-gray-600">
-                        ₹{Number(cat.total).toLocaleString()}
-                      </span>
+                    <div className="flex flex-col w-full">
+                      <div className="font-montserrat font-semibold text-gray-500 capitalize">
+                        {cat.category}
+                      </div>
 
-                      <span className="text-green-600 text-sm">↑</span>
+                      <div className="flex flex-row justify-between">
+                        <span className="font-montserrat font-semibold text-gray-600">
+                          ₹{Number(cat.total).toLocaleString()}
+                        </span>
+
+                        <span className="text-green-600 text-sm">↑</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
+                );
+              })
             ) : (
               <p className="text-sm text-gray-400 px-2">
                 No categorized expenses yet
               </p>
             )}
           </div>
+        </div>
+
+        {/* pie chart cateogy wise  */}
+        {/* category pie chart */}
+        <div className="mt-6 bg-white rounded-2xl border border-gray-300 p-4">
+          <p className="text-[18px] font-semibold text-gray-700 mb-4">
+            Expense Distribution
+          </p>
+
+          {pieData.length === 0 ? (
+            <p className="text-sm text-gray-400">No expense data to display</p>
+          ) : (
+            <div className="w-full h-[280px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={pieData}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={90}
+                  >
+                    {pieData.map((_, index) => (
+                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          )}
         </div>
       </div>
     </div>
