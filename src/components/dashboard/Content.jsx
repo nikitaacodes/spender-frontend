@@ -9,7 +9,7 @@ const Content = ({ data }) => {
     travel: "/travel.svg",
     bill: "/bills.svg",
   };
-  const pieDataa = useMemo(() => {
+  const pieData = useMemo(() => {
     if (!Array.isArray(byCategory)) return [];
 
     return byCategory
@@ -21,11 +21,7 @@ const Content = ({ data }) => {
   }, [byCategory]);
 
   const COLORS = ["#22c55e", "#3b82f6", "#f97316", "#ef4444", "#a855f7"];
-  const pieData = [
-    { name: "Food", value: 5 },
-    { name: "Travel", value: 80 },
-    { name: "Bills", value: 15 },
-  ];
+ 
 
   return (
     <div className="">
