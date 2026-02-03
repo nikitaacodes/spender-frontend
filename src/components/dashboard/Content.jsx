@@ -1,5 +1,7 @@
 import React, { useMemo } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import CustomTooltip from "./CustomTooltip";
+
 const Content = ({ data }) => {
   const { monthly, byCategory } = data || {};
   const categoryIcons = {
@@ -7,7 +9,7 @@ const Content = ({ data }) => {
     travel: "/travel.svg",
     bill: "/bills.svg",
   };
-  const pieData = useMemo(() => {
+  const pieDataa = useMemo(() => {
     if (!Array.isArray(byCategory)) return [];
 
     return byCategory
@@ -19,6 +21,11 @@ const Content = ({ data }) => {
   }, [byCategory]);
 
   const COLORS = ["#22c55e", "#3b82f6", "#f97316", "#ef4444", "#a855f7"];
+  const pieData = [
+    { name: "Food", value: 5 },
+    { name: "Travel", value: 80 },
+    { name: "Bills", value: 15 },
+  ];
 
   return (
     <div className="">
@@ -140,7 +147,6 @@ const Content = ({ data }) => {
             </div>
 
             <div> calender</div>
-            <div> graph </div>
           </div>
         </div>
 
@@ -192,17 +198,18 @@ const Content = ({ data }) => {
           </div>
         </div>
 
-        {/* pie chart cateogy wise  */}
         {/* category pie chart */}
-        <div className="mt-6 bg-white rounded-2xl border border-gray-300 p-4">
-          <p className="text-[18px] font-semibold text-gray-700 mb-4">
-            Expense Distribution
-          </p>
+        <div className="w-100 py-2 border border-gray-500 rounded-2xl bg-white">
+          {/* header */}
+          <div className=" flex flex-row justify-between">
+            <span className="px-10 text-[22px] text-gray-700 font-montserrat font-semibold">
+              Expense Distribution
+            </span>
+          </div>
 
-          {pieData.length === 0 ? (
-            <p className="text-sm text-gray-400">No expense data to display</p>
-          ) : (
-            <div className="w-full h-[280px]">
+          {/* pie chart */}
+          <div className="px-5 py-2 border border-gray-300">
+            <div className="w-50 h-50">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -217,11 +224,12 @@ const Content = ({ data }) => {
                       <Cell key={index} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip />
+
+                  <Tooltip content={<CustomTooltip />} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
