@@ -10,17 +10,19 @@ const Dashboard = () => {
   const [password, setPassword] = useState("");
 
   const handleUnlock = async () => {
-    const res = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/auth/unlock`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ key: keyValue, password }),
-      }
-    );
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/auth/unlock`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ key: keyValue, password }),
+    });
 
-    if (res.ok) setIsAuthenticated(true);
+    if (res.ok) {
+      await fetch(`${import.meta.env.VITE_BACKEND_URL}/dashboard/stats`, {
+        credentials: "include",
+      });
+      setIsAuthenticated(true);
+    }
   };
 
   useEffect(() => {
