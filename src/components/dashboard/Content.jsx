@@ -1,6 +1,7 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import CustomTooltip from "./CustomTooltip";
+import Trends from "./Trends";
 
 const Content = ({ data }) => {
   const { monthly, byCategory } = data || {};
@@ -21,7 +22,27 @@ const Content = ({ data }) => {
   }, [byCategory]);
 
   const COLORS = ["#22c55e", "#3b82f6", "#f97316", "#ef4444", "#a855f7"];
- 
+
+  const [trendRange, setTrendRange] = useState("daily");
+  const [trendData, setTrendData] = useState([]);
+  useEffect(() => {
+    const fetchTrends = async () => {
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/dashboard/trends?range=${trendRange}`,
+        { credentials: "include" },
+      );
+
+      if (!res.ok) {
+        setTrendData([]);
+        return;
+      }
+
+      const data = await res.json();
+      setTrendData(data);
+    };
+
+    fetchTrends();
+  }, [trendRange]);
 
   return (
     <div className="">
@@ -226,6 +247,31 @@ const Content = ({ data }) => {
               </ResponsiveContainer>
             </div>
           </div>
+        </div>
+        <div className="bg-white rounded-2xl border p-4 mt-4">
+          <div className="flex justify-between items-center mb-3">
+            <span className="text-[22px] font-montserrat font-semibold text-gray-700">
+              Expense Trend
+            </span>
+
+            <div className="flex gap-2">
+              {["daily", "weekly", "monthly"].map((r) => (
+                <button
+                  key={r}
+                  onClick={() => setTrendRange(r)}
+                  className={`px-3 py-1 rounded-lg text-sm ${
+                    trendRange === r
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-100 text-gray-600"
+                  }`}
+                >
+                  {r}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <Trends data={trendData} />
         </div>
       </div>
     </div>
