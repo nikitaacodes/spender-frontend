@@ -5,6 +5,7 @@ import Trends from "./Trends";
 
 const Content = ({ data }) => {
   const { monthly, byCategory } = data || {};
+  
   const categoryIcons = {
     food: "/bowl.svg",
     travel: "/travel.svg",
@@ -56,7 +57,7 @@ const Content = ({ data }) => {
           </p>
         </div>
 
-        <div className="px-10 bg-white">
+        <div className="w-full  px-10 bg-white">
           {/* page name  */}
           <div className="flex justify-between py-2">
             <p className=" text-[18px] font-bold font-montserrat text-gray-800">
@@ -67,7 +68,7 @@ const Content = ({ data }) => {
           </div>
 
           {/* expense totoal boxes */}
-          <div className=" ">
+          <div className="w-full  flex flex-row ">
             <div className=" flex flex-wrap gap-5">
               {/* expense box */}
               <div className=" bg-cyan-600 rounded-2xl">
@@ -163,7 +164,34 @@ const Content = ({ data }) => {
               </div>
             </div>
 
-            <div> calender</div>
+            {/* trend */}
+            <div className="py-2">
+              <div className="px-2 rounded-2xl border">
+                <div className="px-2 flex justify-between items-center py-4">
+                  <span className="px-2 text-[22px] font-montserrat font-semibold text-gray-700">
+                    Expense Trend
+                  </span>
+
+                  <div className="flex gap-3">
+                    {["daily", "weekly", "monthly"].map((r) => (
+                      <button
+                        key={r}
+                        onClick={() => setTrendRange(r)}
+                        className={`px-3 py-1  rounded-md text-sm ${
+                          trendRange === r
+                            ? "bg-blue-500 text-white  "
+                            : "bg-gray-100 text-gray-600"
+                        }`}
+                      >
+                        {r}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <Trends data={trendData} />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -247,31 +275,6 @@ const Content = ({ data }) => {
               </ResponsiveContainer>
             </div>
           </div>
-        </div>
-        <div className="bg-white rounded-2xl border p-4 mt-4">
-          <div className="flex justify-between items-center mb-3">
-            <span className="text-[22px] font-montserrat font-semibold text-gray-700">
-              Expense Trend
-            </span>
-
-            <div className="flex gap-2">
-              {["daily", "weekly", "monthly"].map((r) => (
-                <button
-                  key={r}
-                  onClick={() => setTrendRange(r)}
-                  className={`px-3 py-1 rounded-lg text-sm ${
-                    trendRange === r
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-100 text-gray-600"
-                  }`}
-                >
-                  {r}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <Trends data={trendData} />
         </div>
       </div>
     </div>
