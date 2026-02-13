@@ -13,7 +13,7 @@ const Trends = ({ data }) => {
     return <p className="text-sm text-gray-400">No data</p>;
   }
   return (
-    <div className="w-full h-[280px]">
+    <div className="h-40 outline-none">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
           <XAxis dataKey="label" />
