@@ -10,9 +10,10 @@ const TopExp = ({ byCategory }) => {
   };
 
   return (
-    <div className="py-2 px-10 rounded-2xl bg-white">
-      <div className="flex flex-row justify-between">
-        <span className="px-10 text-[22px] text-gray-700 font-montserrat font-semibold">
+    <div className="py-2 px-10 rounded-2xl h-80 bg-white">
+      {/* header sec */}
+      <div className="py-1 flex flex-row justify-between">
+        <span className=" text-[22px] text-gray-700 font-montserrat font-semibold">
           Top expenses
         </span>
         <span>view all</span>
@@ -22,8 +23,7 @@ const TopExp = ({ byCategory }) => {
         {byCategory.length > 0 ? (
           byCategory.map((cat) => {
             const icon =
-              categoryIcons[cat.category] ||
-              categoryIcons.uncategorized;
+              categoryIcons[cat.category] || categoryIcons.uncategorized;
 
             return (
               <div

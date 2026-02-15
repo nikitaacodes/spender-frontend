@@ -20,7 +20,7 @@ const Content = () => {
   useEffect(() => {
     fetch(
       `${import.meta.env.VITE_BACKEND_URL}/dashboard/trends?range=${trendRange}`,
-      { credentials: "include" }
+      { credentials: "include" },
     )
       .then((res) => res.json())
       .then((data) =>
@@ -28,8 +28,8 @@ const Content = () => {
           data.map((row) => ({
             label: row.label,
             total: Number(row.total),
-          }))
-        )
+          })),
+        ),
       );
   }, [trendRange]);
 
@@ -52,8 +52,10 @@ const Content = () => {
 
       <div className="w-full px-10">
         <div className="w-full flex flex-row gap-6">
-
-          <Overview monthly={dashboardData?.monthly} />
+          <Overview
+            monthly={dashboardData?.monthly}
+            lastMonth={dashboardData?.lastMonth}
+          />
 
           <Trends
             trendRange={trendRange}
@@ -68,14 +70,14 @@ const Content = () => {
               data={calendarData}
             />
           </div>
-
         </div>
       </div>
 
-      <TopExp byCategory={dashboardData?.byCategory || []} />
+      <div className="px-10 flex  flex-row gap-10">
+        <TopExp byCategory={dashboardData?.byCategory || []} />
 
-      <ExpDist byCategory={dashboardData?.byCategory || []} />
-
+        <ExpDist byCategory={dashboardData?.byCategory || []} />
+      </div>
     </div>
   );
 };

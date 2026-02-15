@@ -19,9 +19,9 @@ const ExpDist = ({ byCategory }) => {
     .filter((d) => d.value > 0);
 
   return (
-    <div className="w-100 px-10 py-2 rounded-2xl bg-white">
-      <div className="flex flex-row justify-between">
-        <span className="px-10 text-[22px] text-gray-700 font-montserrat font-semibold">
+    <div className="my-4 w-100 px-10 py-2 rounded-2xl h-70 bg-white">
+      <div className=" flex flex-row justify-between">
+        <span className="py-1 text-[22px] text-gray-700 font-montserrat font-semibold">
           Expense Distribution
         </span>
       </div>
