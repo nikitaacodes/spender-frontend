@@ -30,16 +30,23 @@
       radial-gradient(
         ellipse var(--rx, 1200px) var(--ry, 620px) at var(--radial-x-1, 50%)
           var(--radial-y-1, 0%),
-        var(--radial-color-1, rgb(33, 157, 157)) 5%,
+        var(--radial-color-1, rgba(33, 157, 157, 0.742)) 5%,
         rgba(59, 130, 246, 0.12) 30%,
         transparent 45%
       ),
       radial-gradient(
-        ellipse var(--rx, 400px) var(--ry, 520px) at var(--radial-x-1, 1%)
+        ellipse var(--rx, 500px) var(--ry, 520px) at var(--radial-x-1, 1%)
           var(--radial-y-1, 60%),
-        var(--radial-color-1, rgb(33, 157, 157)) 1%,
+        var(--radial-color-1, rgba(33, 157, 157, 0.872)) 1%,
         rgba(59, 130, 246, 0.12) 30%,
         transparent 70%
+      ),
+      radial-gradient(
+        ellipse var(--rx, 1000px) var(--ry, 720px) at var(--radial-x-1, 90%)
+          var(--radial-y-1, 95%),
+        var(--radial-color-1, rgba(33, 157, 157, 0.482)) 5%,
+        rgba(59, 130, 246, 0.12) 30%,
+        transparent 45%
       );
   }
 }

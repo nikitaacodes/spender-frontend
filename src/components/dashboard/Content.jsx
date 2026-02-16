@@ -51,7 +51,7 @@ const Content = () => {
       </div>
 
       <div className="w-full px-10">
-        <div className="w-full flex flex-row gap-6">
+        <div className="w-full flex flex-row gap-6 ">
           <Overview
             monthly={dashboardData?.monthly}
             lastMonth={dashboardData?.lastMonth}

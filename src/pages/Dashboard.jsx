@@ -55,7 +55,7 @@ const Dashboard = () => {
     );
   }
 
-  return <Content data={dashboardData} />;
+  return <Content data={dashboardData}  />;
 };
 
 export default Dashboard;

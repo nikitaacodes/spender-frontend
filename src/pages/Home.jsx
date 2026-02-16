@@ -5,22 +5,22 @@ const Home = () => {
     <div className="bggradient font-montserrat py-10 px-10 lg:px-20">
       <div className="min-h-screen text-white">
         <div className="flex flex-col">
-          <div className="flex mx-auto w-full justify-between items-center gap-12">
-            <div className="mb-16 w-1/2 flex-1">
-              <div>
-                <h1 className="text-4xl font-bold mb-4">Spender</h1>
-                <p className="text-lg">
+          <div className="flex mx-auto w-full justify-between items-center gap-1">
+            <div className="mb-16 flex-1">
+              <div className="pl-10 ">
+                <h1 className="text-[48px] font-bold mb-4">Spender</h1>
+                <p className="text-[22px]">
                   A Telegram-first expense tracker that learns how you think, so
                   you don’t have to categorize every time.
                 </p>
               </div>
             </div>
 
-            <div className="w-1/3 flex flex-col justify-center items-center gap-6">
+            <div className="w-4/7 flex flex-col justify-center items-center">
               <img
                 src="/mobile.svg"
                 alt="Spendo mobile preview"
-                className="w-[500px]h-[00px]"
+                className="w-[100px]h-[200px] "
               />
             </div>
           </div>
@@ -87,7 +87,7 @@ const Home = () => {
             </div>
           </section>
           {/* How it works */}
-          <section className="text-end ">
+          <section className="text-end sm:text-center ">
             <h2 className="text-2xl font-semibold mb-6">How it works</h2>
             <ol className="space-y-4">
               <li>
