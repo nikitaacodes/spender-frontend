@@ -10,7 +10,7 @@ const TopExp = ({ byCategory }) => {
   };
 
   return (
-    <div className="py-2 px-10 rounded-2xl h-80 bg-white">
+    <div className=" py-2 px-10 rounded-2xl h-80 bg-white min-w-[40%]">
       {/* header sec */}
       <div className="py-1 flex flex-row justify-between">
         <span className=" text-[22px] text-gray-700 font-montserrat font-semibold">
@@ -24,6 +24,9 @@ const TopExp = ({ byCategory }) => {
           byCategory.map((cat) => {
             const icon =
               categoryIcons[cat.category] || categoryIcons.uncategorized;
+            const currentTotal = Number(cat.total ?? 0);
+            const previousTotal = Number(cat.previous_total ?? 0);
+            const isIncrease = currentTotal >= previousTotal;
 
             return (
               <div
@@ -38,9 +41,15 @@ const TopExp = ({ byCategory }) => {
 
                   <div className="flex flex-row justify-between">
                     <span className="font-montserrat font-semibold text-gray-600">
-                      ₹{Number(cat.total).toLocaleString()}
+                      ₹{currentTotal.toLocaleString()}
                     </span>
-                    <span className="text-green-600 text-sm">↑</span>
+                    <span
+                      className={`text-sm ${
+                        isIncrease ? "text-red-600" : "text-green-600"
+                      }`}
+                    >
+                      {isIncrease ? "↑" : "↓"}
+                    </span>
                   </div>
                 </div>
               </div>

@@ -1,27 +1,25 @@
 const Overview = ({ monthly, lastMonth }) => {
   const current = Number(monthly?.total ?? 0);
   const previous = Number(lastMonth?.total ?? 0);
-  let percentChange = 0;
-  let isIncrease = true;
-  if (previous === 0 && current === 0) {
-    percentChange = 0;
-    isIncrease = false;
-  } else if (previous === 0) {
-    percentChange = 100;
-    isIncrease = true;
-  } else {
-    percentChange = ((current - previous) / previous) * 100;
-    isIncrease = percentChange >= 0;
-  }
+  const diff = current - previous;
+  const percentChange =
+    previous === 0
+      ? current === 0
+        ? 0
+        : 100
+      : Math.abs((diff / previous) * 100);
+  const isIncrease = diff >= 0;
 
-  percentChange = Math.abs(percentChange).toFixed(1);
   return (
     <div className="py-1 px-6 rounded-2xl h-60 bg-white flex flex-col gap-5 shrink-0">
       <div className="flex justify-between py-2">
         <p className="bg-white text-[18px] font-bold font-montserrat text-gray-800">
           Overview
         </p>
-        <p> Short options </p>
+        <p>
+          {" "}
+          
+        </p>
       </div>
 
       <div className="flex gap-6">
@@ -30,7 +28,7 @@ const Overview = ({ monthly, lastMonth }) => {
           <div className="mt-2 py-3 px-3 flex flex-col gap-1 rounded-2xl border-2 bg-white border-cyan-600">
             <div className="flex min-w-55 justify-between font-montserrat text-gray-800">
               <p>Total Spending</p>
-              <p>option</p>
+              <p> <i className="fa-solid fa-ellipsis-vertical font-black"></i></p>
             </div>
 
             <div className="">
@@ -63,7 +61,7 @@ const Overview = ({ monthly, lastMonth }) => {
           <div className="bg-red-200 mt-2 py-3 px-3 flex flex-col gap-1 rounded-2xl border-2 border-red-500">
             <div className="flex min-w-55 justify-between font-montserrat text-gray-800">
               <p>Limits crossed</p>
-              <p>option</p>
+              <p> <i className="fa-solid fa-ellipsis-vertical font-black"></i></p>
             </div>
 
             <div>

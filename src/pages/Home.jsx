@@ -1,5 +1,7 @@
 import React from "react";
+import { motion } from "motion/react";
 import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <div className="bggradient font-montserrat py-10 px-10 lg:px-20">
@@ -16,13 +18,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="w-4/7 flex flex-col justify-center items-center">
-              <img
-                src="/mobile.svg"
-                alt="Spendo mobile preview"
-                className="w-[100px]h-[200px] "
-              />
-            </div>
+            <div className="my-5 h-[400px] w-[600px] " />
           </div>
 
           <div className="text-center mt-8">
@@ -61,7 +57,7 @@ const Home = () => {
                   →
                 </span>
               </a>
-            </div>{" "}
+            </div>
             <p className="font-bold text-[32px]">
               Stop Tracking Expenses. Start Texting them
             </p>
@@ -75,19 +71,43 @@ const Home = () => {
         <div className="mx-auto px-20 py-5">
           {" "}
           {/* Use cases */}
-          <section className="mt-20 mb-16">
+          <div className="mt-20 mb-16 md:text-start text-center">
             <h2 className="text-2xl font-semibold mb-6">
               What Spender helps you do
             </h2>
-            <div className="space-y-3">
+            <motion.div
+              className="space-y-3"
+              initial="hidden"
+              whileInView={"visible"}
+              variants={{
+                hidden: { opacity: 0, y: 0 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{
+                duration: 0.4,
+                ease: "easeIn",
+              }}
+            >
               <p>• Log expenses instantly from Telegram</p>
               <p>• Avoid thinking while spending</p>
               <p>• Summarize all your junk</p>
               <p>• Review and organize calmly, later</p>
-            </div>
-          </section>
+            </motion.div>
+          </div>
           {/* How it works */}
-          <section className="text-end sm:text-center ">
+          <motion.div
+            className=" md:text-end text-center"
+            initial="hidden"
+            whileInView={"visible"}
+            variants={{
+              hidden: { opacity: 0, y: 0 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{
+              duration: 0.2,
+              ease: "easeIn",
+            }}
+          >
             <h2 className="text-2xl font-semibold mb-6">How it works</h2>
             <ol className="space-y-4">
               <li>
@@ -101,18 +121,22 @@ const Home = () => {
                 <span className="font-medium">3.</span> Categorize once, forever
               </li>
             </ol>
-          </section>
+          </motion.div>
         </div>
+       
+
         <div className="text-center">
-          {" "}
           <Link to="/dashboard">
-            {" "}
-            <p className="font-medium"> View Dashboard</p>{" "}
+            <motion.p
+              className="font-medium"
+              whileHover={{ scale: 1.01, fontWeight: 550 }}
+            >
+              View Dashboard
+            </motion.p>
           </Link>
-          <p className="text-blue-300">
-            {" "}
-            Already have Spendor on Telegram?{" "}
-          </p>{" "}
+          <motion.p className="text-blue-300" whileHover={{ fontWeight: 500 }}>
+            Already have Spendor on Telegram?
+          </motion.p>
         </div>
       </div>
     </div>
