@@ -9,7 +9,10 @@ const Content = ({ onLogout, userName }) => {
   const [trendRange, setTrendRange] = useState("daily");
   const [trendData, setTrendData] = useState([]);
   const rawBackendUrl =
-    import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
+    import.meta.env.VITE_BACKEND_URL ||
+    (typeof window !== "undefined" && window.location.hostname !== "localhost"
+      ? "https://spender-uxgr.vercel.app"
+      : "http://localhost:8000");
   const backendBaseUrl =
     typeof window !== "undefined"
       ? window.location.hostname === "127.0.0.1"
