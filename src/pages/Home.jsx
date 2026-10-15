@@ -1,10 +1,23 @@
 import React from "react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
+import SplashCursor from "../components/SplashCursor.jsx";
 
 const Home = () => {
   return (
-    <div className="bggradient font-montserrat py-10 px-10 lg:px-20">
+    <div className="relative bggradient font-montserrat py-10 px-10 lg:px-20">
+      <SplashCursor
+        DENSITY_DISSIPATION={3.5}
+        VELOCITY_DISSIPATION={2}
+        PRESSURE={0.1}
+        CURL={3}
+        SPLAT_RADIUS={0.2}
+        SPLAT_FORCE={4000}
+        COLOR_UPDATE_SPEED={10}
+        SHADING
+        RAINBOW_MODE={false}
+        COLOR="#02c8ff85"
+      />
       <div className="min-h-screen text-white">
         <div className="flex flex-col">
           <div className="flex mx-auto w-full justify-between items-center gap-1">
@@ -24,7 +37,7 @@ const Home = () => {
           <div className="text-center mt-8">
             <div className="py-5">
               <a
-                href="https://t.me/SpendoSave_bot"
+                href="https://t.me/spendordev_bot"
                 target="_blank"
                 rel="noreferrer"
                 className="
