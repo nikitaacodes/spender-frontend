@@ -1,6 +1,8 @@
 const Overview = ({ monthly, lastMonth }) => {
   const current = Number(monthly?.total ?? 0);
   const previous = Number(lastMonth?.total ?? 0);
+  const limit = Number(monthly?.limit ?? 0);
+  const limitCrossed = Boolean(monthly?.limitCrossed);
   const diff = current - previous;
   const percentChange =
     previous === 0
@@ -16,10 +18,7 @@ const Overview = ({ monthly, lastMonth }) => {
         <p className="bg-white text-[18px] font-bold font-montserrat text-gray-800">
           Overview
         </p>
-        <p>
-          {" "}
-          
-        </p>
+        <p> </p>
       </div>
 
       <div className="flex gap-6">
@@ -28,7 +27,10 @@ const Overview = ({ monthly, lastMonth }) => {
           <div className="mt-2 py-3 px-3 flex flex-col gap-1 rounded-2xl border-2 bg-white border-cyan-600">
             <div className="flex min-w-55 justify-between font-montserrat text-gray-800">
               <p>Total Spending</p>
-              <p> <i className="fa-solid fa-ellipsis-vertical font-black"></i></p>
+              <p>
+                {" "}
+                <i className="fa-solid fa-ellipsis-vertical font-black"></i>
+              </p>
             </div>
 
             <div className="">
@@ -60,23 +62,34 @@ const Overview = ({ monthly, lastMonth }) => {
         <div className="h-25 bg-red-500 rounded-2xl">
           <div className="bg-red-200 mt-2 py-3 px-3 flex flex-col gap-1 rounded-2xl border-2 border-red-500">
             <div className="flex min-w-55 justify-between font-montserrat text-gray-800">
-              <p>Limits crossed</p>
-              <p> <i className="fa-solid fa-ellipsis-vertical font-black"></i></p>
+              <p>{limitCrossed ? "Limit crossed" : "Within limit"}</p>
+              <p>
+                {" "}
+                <i className="fa-solid fa-ellipsis-vertical font-black"></i>
+              </p>
             </div>
 
             <div>
               <div className="flex gap-1">
                 <img src="/rupee.svg" alt="rupee" className="w-10 h-10 mt-2" />
                 <div className="items-baseline flex gap-2">
-                  <span className="font-semibold text-[36px]">900</span>
-                  <span className="text-[12px] px-3 bg-red-300 text-red-600 rounded-sm">
-                    9%
+                  <span className="font-semibold text-[36px]">{limit}</span>
+                  <span
+                    className={`text-[12px] px-3 rounded-sm ${
+                      limitCrossed
+                        ? "bg-red-300 text-red-600"
+                        : "bg-green-100 text-green-600"
+                    }`}
+                  >
+                    {limitCrossed ? "crossed" : "safe"}
                   </span>
                 </div>
               </div>
 
               <p className="text-[12px] text-gray-800">
-                increased from last month
+                {limitCrossed
+                  ? `Current spending: ₹${current}`
+                  : `Average limit: ₹${limit}`}
               </p>
             </div>
           </div>
