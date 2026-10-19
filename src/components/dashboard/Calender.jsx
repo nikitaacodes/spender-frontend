@@ -54,7 +54,7 @@ const Calender = ({ year, month, data }) => {
   }
 
   return (
-    <div className="bg-white rounded-2xl p-4 w-[320px]">
+    <div className="w-full max-w-[320px] rounded-2xl bg-white p-4 lg:w-[320px]">
       <div className="text-center font-semibold mb-3">
         {new Date(year, month).toLocaleString("default", { month: "long" })}
       </div>

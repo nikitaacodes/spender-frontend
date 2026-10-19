@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import CustomTooltip from "./CustomTooltip";
 
 const COLORS = ["#22c55e", "#3b82f6", "#f97316", "#ef4444", "#a855f7"];
@@ -19,7 +13,7 @@ const ExpDist = ({ byCategory }) => {
     .filter((d) => d.value > 0);
 
   return (
-    <div className="my-4 w-100 px-10 py-2 rounded-2xl h-70 bg-white">
+    <div className="my-4 h-70 w-full rounded-2xl bg-white px-4 py-2 lg:w-100 lg:px-10">
       <div className=" flex flex-row justify-between">
         <span className="py-1 text-[22px] text-gray-700 font-montserrat font-semibold">
           Expense Distribution
@@ -27,7 +21,7 @@ const ExpDist = ({ byCategory }) => {
       </div>
 
       <div className="px-5 py-2 border border-gray-300">
-        <div className="w-50 h-50">
+        <div className="h-50 w-full max-w-[200px] lg:w-50">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie

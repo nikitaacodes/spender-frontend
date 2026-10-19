@@ -56,29 +56,40 @@ const Lock = ({
           </p>
         ) : null}
 
-        <input
-          type="text"
-          placeholder="Key"
-          value={keyValue}
-          onChange={(e) => onKeyChange(e.target.value)}
-          className={inputClassName}
-        />
-
-        <input
-          type="password"
-          placeholder="Passcode"
-          value={password}
-          onChange={(e) => onPasswordChange(e.target.value)}
-          className={passwordClassName}
-        />
-
-        <button
-          className="w-full rounded-3xl bg-amber-500 py-2 font-medium text-black transition hover:bg-amber-600 disabled:cursor-not-allowed disabled:opacity-70"
-          onClick={onUnlock}
-          disabled={isSubmitting}
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            onUnlock();
+          }}
         >
-          {isSubmitting ? "Signing in..." : "Sign in"}
-        </button>
+          <input
+            type="text"
+            placeholder="Key"
+            value={keyValue}
+            onChange={(e) => onKeyChange(e.target.value)}
+            className={inputClassName}
+          />
+
+          <input
+            type="password"
+            placeholder="Passcode"
+            value={password}
+            onChange={(e) => onPasswordChange(e.target.value)}
+            className={passwordClassName}
+          />
+
+          <button
+            type="submit"
+            className="w-full rounded-3xl bg-amber-500 py-2 font-medium text-black transition hover:bg-amber-600 disabled:cursor-not-allowed disabled:opacity-70"
+            onClick={(event) => {
+              event.preventDefault();
+              onUnlock();
+            }}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Signing in..." : "Sign in"}
+          </button>
+        </form>
       </div>
 
       <div className={`text-center ${helperTextClassName}`}>

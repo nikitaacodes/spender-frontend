@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="title desc">
+  <title id="title">Shopping bag</title>
+  <desc id="desc">A muted gray shopping bag icon</desc>
+  <path fill="#ababab" d="M176 160h32v-16c0-61.9 50.1-112 112-112s112 50.1 112 112v16h32c17.7 0 32 14.3 32 32v368c0 26.5-21.5 48-48 48H192c-26.5 0-48-21.5-48-48V192c0-17.7 14.3-32 32-32zm80 0h128v-16c0-35.3-28.7-64-64-64s-64 28.7-64 64v16zm-48 80v272h224V240H208zm64 48h96c13.3 0 24 10.7 24 24v80c0 13.3-10.7 24-24 24h-96c-13.3 0-24-10.7-24-24v-80c0-13.3 10.7-24 24-24zm24 48v32h48v-32h-48z"/>
+</svg>

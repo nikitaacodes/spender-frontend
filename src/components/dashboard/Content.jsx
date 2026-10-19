@@ -85,9 +85,22 @@ const Content = ({ onLogout, userName }) => {
     return map;
   }, [dashboardData]);
 
+  const handleLimitUpdated = (amount) => {
+    setDashboardData((currentData) =>
+      currentData
+        ? {
+            ...currentData,
+            monthly: { ...currentData.monthly, limit: amount },
+          }
+        : currentData,
+    );
+  };
+
   return (
-    <div className="w-full bg-gray-200 flex flex-col">
-      <div className="flex items-center justify-between gap-4 px-10 py-5">
+    <div className="relative w-full bg-gray-200 flex flex-col">
+      {/* top bar */}
+      <div className="flex items-center justify-between gap-4 px-4 py-5 lg:px-10">
+        {/* hello heading */}
         <p className="text-[22px] font-montserrat font-bold text-black">
           Hello {userName || "there"} !
         </p>
@@ -103,20 +116,38 @@ const Content = ({ onLogout, userName }) => {
         ) : null}
       </div>
 
-      <div className="w-full px-10">
-        <div className="w-full flex flex-row gap-6 ">
-          <Overview
-            monthly={dashboardData?.monthly}
-            lastMonth={dashboardData?.lastMonthRes}
-          />
+      <div className="flex w-full flex-col gap-5 px-4 lg:flex-row lg:px-10">
+        {/* 1st row */}
+        <div className="flex w-full flex-col gap-5 lg:w-fit">
+          <div className="w-full lg:w-fit">
+            <Overview
+              monthly={dashboardData?.monthly}
+              lastMonth={dashboardData?.lastMonthRes}
+              backendBaseUrl={backendBaseUrl}
+              onLimitUpdated={handleLimitUpdated}
+            />
+          </div>
+          <div className="w-full max-w-[590px] min-w-0 lg:min-w-[40%]">
+            <TopExp byCategory={dashboardData?.byCategory || []} />
+          </div>
+        </div>
+        <div className="w-full lg:w-fit">
+          {/* 2nd row */}
+          <div className="flex w-full flex-col gap-5 lg:w-fit">
+            <Trends
+              trendRange={trendRange}
+              setTrendRange={setTrendRange}
+              trendData={trendData}
+            />
+          </div>
 
-          <Trends
-            trendRange={trendRange}
-            setTrendRange={setTrendRange}
-            trendData={trendData}
-          />
+          <div className="w-full lg:w-auto">
+            <ExpDist byCategory={dashboardData?.byCategory || []} />
+          </div>
+        </div>
 
-          <div className="shrink-0">
+        <div className="flex w-full flex-col gap-6 lg:flex-row">
+          <div className="w-full shrink-0 lg:w-auto">
             <Calender
               year={new Date().getFullYear()}
               month={new Date().getMonth()}
@@ -124,12 +155,6 @@ const Content = ({ onLogout, userName }) => {
             />
           </div>
         </div>
-      </div>
-
-      <div className="px-10 flex  flex-row gap-10">
-        <TopExp byCategory={dashboardData?.byCategory || []} />
-
-        <ExpDist byCategory={dashboardData?.byCategory || []} />
       </div>
     </div>
   );

@@ -10,19 +10,19 @@ import {
 
 const Trends = ({ trendRange, setTrendRange, trendData }) => {
   return (
-    <div className="bg-white rounded-2xl w-[500px]">
+    <div className="w-full rounded-2xl bg-white lg:w-[500px]">
       <div className="px-2 rounded-2xl outline-none">
-        <div className="px-2 flex justify-between items-center py-4">
+        <div className="flex flex-col items-start gap-3 px-2 py-4 lg:flex-row lg:items-center lg:justify-between">
           <span className="px-2 text-[22px] font-montserrat font-semibold text-gray-700">
             Expense Trend
           </span>
 
-          <div className="flex gap-3">
+          <div className="flex w-full gap-2 lg:w-auto lg:gap-3">
             {["daily", "weekly", "monthly"].map((r) => (
               <button
                 key={r}
                 onClick={() => setTrendRange(r)}
-                className={`px-3 py-1 rounded-md text-sm ${
+                className={`flex-1 rounded-md px-2 py-1 text-sm lg:flex-none lg:px-3 ${
                   trendRange === r
                     ? "bg-blue-500 text-white"
                     : "bg-gray-100 text-gray-600"

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="title desc">
+  <title id="title">Fuel can</title>
+  <desc id="desc">A muted gray fuel can icon</desc>
+  <path fill="#ababab" d="M180 88c0-13.3 10.7-24 24-24h168c13.3 0 24 10.7 24 24v48h40c13.3 0 24 10.7 24 24v24h24c17.7 0 32 14.3 32 32v48h24c13.3 0 24 10.7 24 24v272c0 26.5-21.5 48-48 48H168c-26.5 0-48-21.5-48-48V184c0-13.3 10.7-24 24-24h36V88zm48 40v32h120v-32H228zm-40 96v272h208V224H188zm48 48h112c13.3 0 24 10.7 24 24v88c0 13.3-10.7 24-24 24H236c-13.3 0-24-10.7-24-24v-88c0-13.3 10.7-24 24-24zm24 48v40h64v-40h-64zm184-88h32v-32h-32v32zm0 48v32h56v-32h-56z"/>
+</svg>
