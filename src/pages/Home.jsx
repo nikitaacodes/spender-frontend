@@ -21,21 +21,21 @@ const Home = () => {
       <div className="min-h-screen text-white">
         <div className="flex flex-col">
           <div className="flex mx-auto w-full justify-between items-center gap-1">
-            <div className="mb-16 flex-1">
-              <div className="pl-10 ">
-                <h1 className="text-[48px] font-bold mb-4">Spender</h1>
-                <p className="text-[22px]">
+            <div className="lg:py-20 md:py-13 mb-16 flex-1">
+              <div className="lg:pl-10 pl-4 ">
+                <h1 className="lg:text-[48px] text-[36px] font-bold mb-4">
+                  Spender
+                </h1>
+                <p className="w-[50%] lg:text-[22px] text-[18px]">
                   A Telegram-first expense tracker that learns how you think, so
                   you don’t have to categorize every time.
                 </p>
               </div>
             </div>
-
-            <div className="my-5 h-[400px] w-[600px] " />
           </div>
 
           <div className="text-center mt-8">
-            <div className="py-5">
+            <div className="lg:py-5 py-3">
               <a
                 href="https://t.me/spendordev_bot"
                 target="_blank"
@@ -48,8 +48,8 @@ const Home = () => {
                   gap-2
                   rounded-xl
                   bg-blue-600
-                  px-8
-                  py-4
+                  lg:px-8 px-4
+                  lg:py-4 py-3
                   text-base
                   font-semibold
                   text-white
@@ -71,25 +71,25 @@ const Home = () => {
                 </span>
               </a>
             </div>
-            <p className="font-bold text-[32px]">
+            <p className="font-bold lg:text-[32px] text-[26px]">
               Stop Tracking Expenses. Start Texting them
             </p>
-            <p className="text-[18px]">
+            <p className="lg:text-[18px] text-[16px]">
               Logs expenses instantly on Telegram and learns how you organize
               money
             </p>
           </div>
         </div>
 
-        <div className="mx-auto px-20 py-5">
+        <div className="mx-auto  lg:text-center lg:px-20 px-5 lg:py-2 py-1">
           {" "}
           {/* Use cases */}
-          <div className="mt-20 mb-16 md:text-start text-center">
-            <h2 className="text-2xl font-semibold mb-6">
+          <div className="mt-20 mb-16 md:text-start text-left">
+            <h2 className="lg:text-2xl text-xl  font-semibold mb-6">
               What Spender helps you do
             </h2>
             <motion.div
-              className="space-y-3"
+              className="space-y-3 "
               initial="hidden"
               whileInView={"visible"}
               variants={{
@@ -109,7 +109,7 @@ const Home = () => {
           </div>
           {/* How it works */}
           <motion.div
-            className=" md:text-end text-center"
+            className=" md:text-end  text-right"
             initial="hidden"
             whileInView={"visible"}
             variants={{
@@ -121,7 +121,7 @@ const Home = () => {
               ease: "easeIn",
             }}
           >
-            <h2 className="text-2xl font-semibold mb-6">How it works</h2>
+            <h2 className="lg:text-2xl text-xl font-semibold mb-6">How it works</h2>
             <ol className="space-y-4">
               <li>
                 <span className="font-medium">1.</span> Add expenses in Telegram
@@ -136,7 +136,6 @@ const Home = () => {
             </ol>
           </motion.div>
         </div>
-       
 
         <div className="text-center">
           <Link to="/dashboard">
