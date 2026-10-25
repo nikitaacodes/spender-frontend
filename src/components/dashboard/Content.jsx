@@ -97,7 +97,7 @@ const Content = ({ onLogout, userName }) => {
   };
 
   return (
-    <div className="relative w-full bg-gray-200 flex flex-col">
+    <div className="relative w-full h-screen bg-gray-200 flex flex-col">
       {/* top bar */}
       <div className="flex items-center justify-between gap-4 px-4 py-5 lg:px-10">
         {/* hello heading */}
