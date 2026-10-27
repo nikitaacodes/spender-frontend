@@ -80,7 +80,12 @@ const Content = ({ onLogout, userName }) => {
     if (!dashboardData?.dailyTrend) return {};
     const map = {};
     dashboardData.dailyTrend.forEach((row) => {
-      map[row.date] = Number(row.total);
+      if (!row || !row.date) return;
+      const dateKey =
+        typeof row.date === "string"
+          ? row.date.slice(0, 10)
+          : new Date(row.date).toISOString().slice(0, 10);
+      map[dateKey] = Number(row.total || 0);
     });
     return map;
   }, [dashboardData]);

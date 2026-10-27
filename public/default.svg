@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="title desc">
+  <title id="title">Expense category</title>
+  <desc id="desc">A muted gray generic expense icon</desc>
+  <path fill="#94a3b8" d="M320 64c-141.4 0-256 114.6-256 256s114.6 256 256 256 256-114.6 256-256S461.4 64 320 64zm0 96c26.5 0 48 21.5 48 48s-21.5 48-48 48-48-21.5-48-48 21.5-48 48-48zm80 304H240v-48h32V304h-32v-48h112v160h48v48z"/>
+</svg>

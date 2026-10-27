@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="title desc">
+  <title id="title">Medical care</title>
+  <desc id="desc">A muted gray medical cross icon</desc>
+  <path fill="#ababab" d="M256 80h128v176h176v128H384v176H256V384H80V256h176V80z"/>
+</svg>

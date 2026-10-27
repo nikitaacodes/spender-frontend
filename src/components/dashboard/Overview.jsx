@@ -115,7 +115,7 @@ const Overview = ({ monthly, lastMonth, backendBaseUrl, onLimitUpdated }) => {
         <div className=" h-auto flex flex-row gap-5">
           {/* Spending Box */}
           <div className="min-w-0 flex-1 rounded-2xl lg:h-auto lg:w-auto lg:flex-none">
-            <div className="relative mt-2 py-4 flex flex-col gap-5 overflow-hidden rounded-2xl border-2 bg-cyan-50 px-2 lg:px-3">
+            <div className="relative mt-2 py-4 flex flex-col gap-5 overflow-hidden rounded-2xl  bg-cyan-50 px-2 lg:px-3">
               <WaveBackground variant="blue" />
               <div className="relative z-10 px-1 flex justify-between font-montserrat  text-gray-800 lg:min-w-55">
                 <p className=" text-[16px] font-medium">Total Spending</p>

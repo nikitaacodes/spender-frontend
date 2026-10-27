@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="title desc">
+  <title id="title">Internet connection</title>
+  <desc id="desc">A muted gray Wi-Fi router icon</desc>
+  <path fill="#ababab" d="M320 96c-14.4 0-28.2 3.8-40 10.4V128h80v-21.6C348.2 99.8 334.4 96 320 96z"/>
+  <path fill="none" stroke="#ababab" stroke-linecap="round" stroke-width="42" d="M190 238c72-64 188-64 260 0M122 158c108-96 288-96 396 0"/>
+  <rect x="96" y="286" width="448" height="218" rx="38" fill="#ababab"/>
+  <rect x="140" y="330" width="360" height="86" rx="20" fill="#fff"/>
+  <circle cx="188" cy="373" r="18" fill="#ababab"/>
+  <circle cx="252" cy="373" r="18" fill="#ababab"/>
+  <path fill="#ababab" d="M366 358h90c11 0 20 9 20 20s-9 20-20 20h-90c-11 0-20-9-20-20s9-20 20-20z"/>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="title desc">
+  <title id="title">Rent</title>
+  <desc id="desc">A muted gray house icon</desc>
+  <path fill="#ababab" d="M320 72 64 280v48h48v240h160V416h96v152h160V328h48v-48L320 72zm144 408h-48V368H224v112h-48V288l144-117 144 117v192z"/>
+  <path fill="#ababab" d="M256 296h128v72H256z"/>
+</svg>
